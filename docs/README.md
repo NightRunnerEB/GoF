@@ -1,19 +1,15 @@
-# Документация
+# Documentation
 
-В каталоге `docs` собираются методические материалы:
+The `docs` folder is the place for study notes, diagrams, and cross-language comparisons.
 
-- сводные таблицы, показывающие различия между реализациями Rust и Java;
-- диаграммы последовательностей/классов (рекомендуемый формат — PlantUML);
-- заметки о работе с инструментарием и best practices.
-
-Стандартная структура может выглядеть так:
+Suggested layout:
 
 ```
 docs/
-├── overview.md          # Общие сведения о паттернах GoF
-├── creational.md        # Особенности порождающих паттернов
-├── structural.md        # Особенности структурных паттернов
-└── behavioral.md        # Особенности поведенческих паттернов
+├── overview.md          # Common concepts and glossary
+├── creational.md        # Notes about creational patterns
+├── structural.md        # Notes about structural patterns
+└── behavioral.md        # Notes about behavioral patterns
 ```
 
-Добавляйте материалы по мере появления новых паттернов и не забывайте ссылаться на них из README соответствующих модулей.
+Add or reshape files as you expand the project, and link back to these documents from the pattern READMEs.

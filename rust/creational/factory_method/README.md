@@ -1,15 +1,3 @@
-# Factory Method (Фабричный метод)
+# Factory Method (Rust)
 
-Кратко описывает идею паттерна с точки зрения Rust: выделяем интерфейс (trait) создания объектов и делегируем решение выбора конкретной реализации подклассам/функциям-фабрикам.
-
-## Как запустить пример
-
-```bash
-cargo run --package factory_method --example dialog
-```
-
-## Тесты
-
-```bash
-cargo test --package factory_method
-```
+Placeholder crate for the Factory Method pattern. Keep the implementation inside `src/lib.rs` so you can extend it with examples and tests later.

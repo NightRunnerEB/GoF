@@ -1,29 +1,21 @@
 # Rust Workspace
 
-Rust-примеры организованы как `Cargo` workspace c отдельным крейтом на каждый паттерн. Категории повторяют деление на `Creational`, `Structural`, `Behavioral`.
+Rust patterns are organized as a Cargo workspace. Each pattern has its own crate inside a category directory (`creational`, `structural`, `behavioral`). Keep both the implementation and the usage example inside `src/main.rs` for quick reading.
 
-## Структура
+## Layout
 
 ```
 rust/
-├── Cargo.toml            # Настройка workspace
-├── README.md             # Это описание
+├── Cargo.toml
 ├── creational/
-│   └── factory_method/   # Пример реализации паттерна "Фабричный метод"
+│   └── factory_method/
 ├── structural/
-│   └── adapter/          # Пример паттерна "Адаптер"
+│   └── adapter/
 └── behavioral/
-    └── observer/         # Пример паттерна "Наблюдатель"
+    └── observer/
 ```
 
-Каждый крейт содержит:
+## Commands
 
-- `src/lib.rs` — реализация паттерна;
-- `examples/` — исполняемые примеры использования;
-- `tests/` — интеграционные тесты (по желанию);
-- `README.md` — пояснения и диаграммы.
-
-## Команды
-
-- `cargo test` — запустить тесты всех паттернов.
-- `cargo run --example <name> --package <crate>` — запустить конкретный пример.
+- `cargo run -p <pattern>` executes the binary once you add code.
+- `cargo fmt` keeps formatting consistent across all crates.

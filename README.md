@@ -1,51 +1,15 @@
 # Gang of Four Patterns in Rust and Java
 
-Этот репозиторий собирает реализации классических паттернов проектирования (GoF) на двух языках: Rust и Java. Цель — предоставить учебную площадку с единым стилем кода, сопроводительными объяснениями и тестами.
+This repository hosts educational scaffolding for implementing classic Gang of Four design patterns in Rust and Java. Each language has its own workspace so you can evolve patterns independently while keeping the directory structure aligned.
 
-## Структура
+## Structure
 
 ```
 .
-├── java/           # Экосистема примеров на Java (Gradle multi-project)
-├── rust/           # Экосистема примеров на Rust (Cargo workspace)
-├── docs/           # Методические материалы и диаграммы
-├── scripts/        # Помощники для генерации заготовок
+├── java/           # Gradle multi-project workspace
+├── rust/           # Cargo workspace
+├── docs/           # Learning notes and diagrams
 └── README.md
 ```
 
-Каждый язык организован по семействам паттернов (Creational, Structural, Behavioral). Для каждого паттерна создаётся изолированный модуль/крейт с собственной документацией и тестами.
-
-## Как работать с репозиторием
-
-- Каждый паттерн описывайте в виде:
-  - кода примера;
-  - README с объяснением, диаграммами и вариантами использования;
-  - юнит-тестов или сценариев запуска.
-- Старайтесь, чтобы реализации разных языков были сопоставимы.
-- Сопровождайте PR кратким описанием и ссылками на источники.
-
-## Быстрый старт
-
-### Rust
-
-```bash
-cd rust
-cargo test
-```
-
-### Java
-
-```bash
-cd java
-gradle wrapper   # выполните один раз, если нет локального Gradle Wrapper-а
-./gradlew test
-```
-
-## Навигация по паттернам
-
-- `docs/` — общие методические материалы, сводные таблицы и диаграммы.
-- `scripts/` — CLI-помощники для генерации каркасов паттернов.
-
-## Лицензия
-
-Проект распространяется по лицензии MIT. См. файл `LICENSE`.
+Both languages follow the same high-level taxonomy: `creational`, `structural`, and `behavioral`. Every pattern lives in its own module or crate with a single source file where you keep both the implementation and the client usage example.

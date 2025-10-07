@@ -1,13 +1,13 @@
 # Java Modules
 
-Java-проект организован как многомодульный Gradle-проект. Каждое семейство паттернов располагается в отдельной группе (`creational`, `structural`, `behavioral`), а конкретный паттерн — в модуле с именем в `kebab-case`.
+The Java workspace uses Gradle in a multi-project setup. Each pattern sits in its own module under `creational`, `structural`, or `behavioral`, and you keep the entire example (implementation plus client) inside a single file within that module.
 
-## Структура
+## Layout
 
 ```
 java/
-├── build.gradle.kts        # Общие настройки (Java 21, JUnit 5, AssertJ)
-├── settings.gradle.kts     # Список модулей
+├── build.gradle.kts
+├── settings.gradle.kts
 ├── creational/
 │   └── factory-method/
 ├── structural/
@@ -16,9 +16,9 @@ java/
     └── observer/
 ```
 
-## Запуск тестов
+## Running Tests
 
-По умолчанию ожидется наличие Gradle Wrapper. Создайте его один раз, установив Gradle локально и выполнив:
+Generate the Gradle Wrapper once, then use it for builds and tests (add test sources later if you need them):
 
 ```bash
 cd java
@@ -26,10 +26,10 @@ gradle wrapper
 ./gradlew test
 ```
 
-После генерации wrapper-а тесты можно запускать командой `./gradlew test`.
+Run the single-file example from your IDE or wire the Gradle application plugin when you are ready to execute it from the command line.
 
-## Добавление нового паттерна
+## Adding A New Pattern
 
-1. Сгенерируйте каркас: `./scripts/new_java_pattern.sh <category> <pattern>`.
-2. Добавьте модуль в `settings.gradle.kts` через `include("<category>:<pattern>")`.
-3. Реализуйте код паттерна, подготовьте README и тесты.
+1. Create a folder under the relevant category (for example `java/structural/composite`).
+2. Add the module to `settings.gradle.kts` with `include("<category>:<pattern>")`.
+3. Create `src/main/java/.../PatternExample.java` and keep both implementation and usage inside that file.

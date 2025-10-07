@@ -1,15 +1,3 @@
-# Adapter (Адаптер)
+# Adapter (Rust)
 
-Пример адаптации интерфейсов зарядных устройств. Rust позволяет выразить адаптер через обёртку со ссылками на источник данных.
-
-## Как запустить пример
-
-```bash
-cargo run --package adapter --example charging
-```
-
-## Тесты
-
-```bash
-cargo test --package adapter
-```
+Placeholder crate for the Adapter pattern. Focus the entire example inside `src/lib.rs` when you are ready to implement it.
