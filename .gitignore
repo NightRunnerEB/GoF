@@ -1,0 +1,15 @@
+.DS_Store
+.idea/
+.vscode/
+*.log
+
+/target/
+**/target/
+Cargo.lock
+
+.gradle/
+build/
+**/build/
+out/
+
+/docs/dist/

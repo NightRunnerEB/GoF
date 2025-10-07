@@ -1,0 +1,13 @@
+[package]
+name = "factory_method"
+version = "0.1.0"
+edition = "2021"
+description = "GoF: Factory Method pattern in Rust"
+authors = ["GoF Examples <gof@example.com>"]
+license = "MIT"
+
+[dependencies]
+anyhow.workspace = true
+
+[dev-dependencies]
+pretty_assertions.workspace = true

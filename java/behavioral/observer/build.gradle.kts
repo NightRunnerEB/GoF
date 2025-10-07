@@ -1,0 +1,1 @@
+description = "GoF Observer pattern"
