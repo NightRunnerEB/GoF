@@ -1,8 +1,8 @@
 [workspace]
 members = [
-    "creational/factory_method",
-    "structural/adapter",
-    "behavioral/observer",
+    "creational/*",
+    "structural/*",
+    "behavioral/*",
 ]
 resolver = "2"
 

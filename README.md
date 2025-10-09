@@ -1,6 +1,6 @@
 # Gang of Four Patterns in Rust and Java
 
-This repository hosts educational scaffolding for implementing classic Gang of Four design patterns in Rust and Java. Each language has its own workspace so you can evolve patterns independently while keeping the directory structure aligned.
+This repository hosts scaffolding for learning the classic Gang of Four design patterns in Rust and Java. Each language lives in its own workspace so you can iterate independently while keeping the folder layout aligned.
 
 ## Structure
 
@@ -12,6 +12,13 @@ This repository hosts educational scaffolding for implementing classic Gang of F
 └── README.md
 ```
 
-Both languages follow the same high-level taxonomy: `creational`, `structural`, and `behavioral`. Every pattern lives in its own module or crate with a single source file where you keep both the implementation and the client usage example.
+Both ecosystems follow the same taxonomy (`creational`, `structural`, `behavioral`). Every pattern sits in a dedicated module/crate with a single source file that contains both the implementation and the basic client usage.
+
+## Navigation
+
+- `docs/` contains supplementary learning materials.
+- `java/` and `rust/` contain language-specific workspaces with matching pattern lists.
+
+## License
 
 Distributed under the MIT License. See `LICENSE` for details.

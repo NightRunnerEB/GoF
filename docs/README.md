@@ -13,3 +13,5 @@ docs/
 ```
 
 Add or reshape files as you expand the project, and link back to these documents from the pattern READMEs.
+
+Current additions include `iterator.md`, which explains the Iterator pattern in detail with use cases and benefits.

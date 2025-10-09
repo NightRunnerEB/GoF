@@ -1,10 +1,12 @@
-subprojects {
-    apply(plugin = "java-library")
+import org.gradle.api.plugins.JavaPluginExtension
+import org.gradle.api.tasks.testing.Test
+import org.gradle.jvm.toolchain.JavaLanguageVersion
 
-    java {
-        toolchain {
-            languageVersion = JavaLanguageVersion.of(21)
-        }
+subprojects {
+    pluginManager.apply("java-library")
+
+    extensions.configure<JavaPluginExtension> {
+        toolchain.languageVersion.set(JavaLanguageVersion.of(21))
     }
 
     repositories {
@@ -12,12 +14,12 @@ subprojects {
     }
 
     dependencies {
-        testImplementation(platform("org.junit:junit-bom:5.10.2"))
-        testImplementation("org.junit.jupiter:junit-jupiter")
-        testImplementation("org.assertj:assertj-core:3.26.0")
+        add("testImplementation", platform("org.junit:junit-bom:5.10.2"))
+        add("testImplementation", "org.junit.jupiter:junit-jupiter")
+        add("testImplementation", "org.assertj:assertj-core:3.26.0")
     }
 
-    tasks.test {
+    tasks.withType<Test>().configureEach {
         useJUnitPlatform()
     }
 }

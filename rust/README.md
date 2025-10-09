@@ -12,7 +12,8 @@ rust/
 ├── structural/
 │   └── adapter/
 └── behavioral/
-    └── observer/
+    ├── observer/
+    └── iterator/
 ```
 
 ## Commands

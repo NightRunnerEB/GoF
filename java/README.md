@@ -9,11 +9,12 @@ java/
 ├── build.gradle.kts
 ├── settings.gradle.kts
 ├── creational/
-│   └── factory-method/
+│   └── factory-method/      # src/main/java/FactoryMethodExample.java
 ├── structural/
-│   └── adapter/
+│   └── adapter/             # src/main/java/AdapterExample.java
 └── behavioral/
-    └── observer/
+    ├── observer/            # src/main/java/ObserverExample.java
+    └── iterator/            # src/main/java/Main.java
 ```
 
 ## Running Tests
@@ -26,7 +27,7 @@ gradle wrapper
 ./gradlew test
 ```
 
-Run the single-file example from your IDE or wire the Gradle application plugin when you are ready to execute it from the command line.
+Run the single-file example from your IDE or wire the Gradle application plugin when you are ready to execute it from the command line. Each example lives in the default package to keep the path short.
 
 ## Adding A New Pattern
 
