@@ -1,19 +1,11 @@
-[workspace]
-members = [
-    "creational/*",
-    "structural/*",
-    "behavioral/*",
-]
-resolver = "2"
-
-[workspace.package]
+[package]
+name = "gof_patterns"
+version = "0.1.0"
 edition = "2021"
+description = "Educational GoF pattern implementations in Rust"
+license = "MIT"
 
-[workspace.dependencies]
-anyhow = "1"
-thiserror = "1"
-serde = { version = "1", features = ["derive"] }
-pretty_assertions = "1"
+[lib]
+path = "src/lib.rs"
 
-[workspace.metadata.gof]
-patterns = ["creational", "structural", "behavioral"]
+[dependencies]

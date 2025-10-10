@@ -1,7 +1,0 @@
-[package]
-name = "iterator"
-version = "0.1.0"
-edition = "2021"
-description = "GoF: Iterator pattern in Rust"
-
-[dependencies]
