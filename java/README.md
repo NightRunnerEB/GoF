@@ -1,6 +1,6 @@
 # Java Modules
 
-The Java workspace uses Gradle in a multi-project setup. Each pattern sits in its own module under `creational`, `structural`, or `behavioral`, and you keep the entire example (implementation plus client) inside a single file within that module.
+Each pattern lives in its own Gradle module under `creational`, `structural`, or `behavioral`. Inside every module there is a single file that holds both the pattern implementation and a `demo()` helper showing client usage.
 
 ## Layout
 
@@ -14,23 +14,12 @@ java/
 │   └── adapter/             # src/main/java/AdapterExample.java
 └── behavioral/
     ├── observer/            # src/main/java/ObserverExample.java
-    └── iterator/            # src/main/java/Main.java
+    ├── iterator/            # src/main/java/IteratorExample.java
+    └── visitor/             # src/main/java/VisitorExample.java
 ```
 
-## Running Tests
+## Working With Examples
 
-Generate the Gradle Wrapper once, then use it for builds and tests (add test sources later if you need them):
-
-```bash
-cd java
-gradle wrapper
-./gradlew test
-```
-
-Run the single-file example from your IDE or wire the Gradle application plugin when you are ready to execute it from the command line. Each example lives in the default package to keep the path short.
-
-## Adding A New Pattern
-
-1. Create a folder under the relevant category (for example `java/structural/composite`).
-2. Add the module to `settings.gradle.kts` with `include("<category>:<pattern>")`.
-3. Create `src/main/java/.../PatternExample.java` and keep both implementation and usage inside that file.
+- Write pattern code and demo usage inside the same class file.
+- Call the `demo()` method from tests, a REPL, or a tiny wrapper when you want to execute it.
+- The default package keeps file paths short; add packages later if you need stronger structure.

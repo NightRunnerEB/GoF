@@ -67,9 +67,12 @@ class CompanyIterator implements Iterator<Employee> {
 }
 
 // ===== Client =====
-public class Main {
+public final class IteratorExample {
 
-    public static void main(String[] args) {
+    private IteratorExample() {
+    }
+
+    public static List<String> demo() {
         Department it = new Department();
         it.addEmployee(new Employee("Alice"));
         it.addEmployee(new Employee("Bob"));
@@ -81,9 +84,10 @@ public class Main {
         company.addDepartment(it);
         company.addDepartment(hr);
 
-        // Client code does not care about departments.
+        List<String> names = new ArrayList<>();
         for (Employee e : company) {
-            System.out.println(e.name);
+            names.add(e.name);
         }
+        return names;
     }
 }

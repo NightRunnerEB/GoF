@@ -1,6 +1,6 @@
 # Rust Workspace
 
-Rust patterns are organized as a Cargo workspace. Each pattern has its own crate inside a category directory (`creational`, `structural`, `behavioral`). Keep both the implementation and the usage example inside `src/main.rs` for quick reading.
+Rust patterns live in a Cargo workspace. Each pattern has its own crate inside the `creational`, `structural`, or `behavioral` directories. Use `src/lib.rs` to keep both the pattern implementation and the client-side usage example together.
 
 ## Layout
 
@@ -13,10 +13,11 @@ rust/
 │   └── adapter/
 └── behavioral/
     ├── observer/
-    └── iterator/
+    ├── iterator/
+    └── visitor/
 ```
 
 ## Commands
 
-- `cargo run -p <pattern>` executes the binary once you add code.
-- `cargo fmt` keeps formatting consistent across all crates.
+- `cargo test` compiles every pattern crate and runs inline tests.
+- `cargo fmt` keeps formatting consistent across the workspace.
