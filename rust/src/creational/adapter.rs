@@ -5,18 +5,18 @@ impl OldLogger {
     }
 }
 
-// Новый интерфейс, требуемый системой:
+// New interface required by the system:
 trait Logger {
     fn write(&self, message: &str);
 }
 
-// Адаптер, совмещающий OldLogger с новым интерфейсом:
+// Adapter that wraps OldLogger with the new interface:
 struct LoggerAdapter {
     old_logger: OldLogger,
 }
 impl Logger for LoggerAdapter {
     fn write(&self, message: &str) {
-        // Перенаправляем вызов в старый метод:
+        // Forward the call to the legacy method:
         self.old_logger.log(message);
     }
 }
@@ -27,7 +27,7 @@ mod tests {
 
     #[test]
     fn example() {
-        // Использование адаптера:
+        // Using the adapter:
         let adapter = LoggerAdapter {
             old_logger: OldLogger,
         };

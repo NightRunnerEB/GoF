@@ -56,7 +56,7 @@ impl DataSource for CompressionDecorator {
     }
 }
 
-// Builder-стиль
+// Builder-style helper that stacks decorators
 struct DataSourceBuilder {
     current: Box<dyn DataSource>,
 }

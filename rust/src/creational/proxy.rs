@@ -1,44 +1,61 @@
-trait Data {
-    fn load(&mut self) -> &str;
+use std::{collections::HashMap, thread, time::Duration};
+
+trait Storage {
+    fn get(&self, key: &str) -> Option<String>;
 }
 
-// Реальный объект (тяжёлый)
-struct RealData {
-    content: String,
+// Real storage (slow)
+#[derive(Clone, Copy)]
+struct RealStorage;
+impl Storage for RealStorage {
+    fn get(&self, key: &str) -> Option<String> {
+        println!("IO: fetching '{key}' from slow storage...");
+        thread::sleep(Duration::from_millis(200)); // simulate I/O
+        Some(format!("value_of_{key}"))
+    }
 }
 
-impl RealData {
-    fn new() -> Self {
-        println!("Loading real data...");
+// User role
+#[derive(Clone, Copy)]
+enum Role {
+    Admin,
+    User,
+}
+
+// Proxy: adds authorization + simple cache
+struct StorageProxy<S: Storage> {
+    inner: S,
+    role: Role,
+    cache: std::cell::RefCell<HashMap<String, String>>,
+}
+
+impl<S: Storage> StorageProxy<S> {
+    fn new(inner: S, role: Role) -> Self {
         Self {
-            content: "Big data from DB".to_string(),
+            inner,
+            role,
+            cache: Default::default(),
         }
     }
 }
 
-impl Data for RealData {
-    fn load(&mut self) -> &str {
-        &self.content
-    }
-}
-
-// Прокси
-struct ProxyData {
-    real: Option<RealData>,
-}
-
-impl ProxyData {
-    fn new() -> Self {
-        Self { real: None }
-    }
-}
-
-impl Data for ProxyData {
-    fn load(&mut self) -> &str {
-        if self.real.is_none() {
-            self.real = Some(RealData::new()); // lazy creation
+impl<S: Storage> Storage for StorageProxy<S> {
+    fn get(&self, key: &str) -> Option<String> {
+        // Protection: block private keys for non-admins
+        if matches!(self.role, Role::User) && key.starts_with("secret:") {
+            println!("DENY: '{}' for User", key);
+            return None;
         }
-        self.real.as_ref().unwrap().load()
+        // Cache lookup
+        if let Some(value) = self.cache.borrow().get(key).cloned() {
+            println!("CACHE: hit '{key}'");
+            return Some(value);
+        }
+        let value = self.inner.get(key)?;
+        self.cache
+            .borrow_mut()
+            .insert(key.to_string(), value.clone());
+        Some(value)
     }
 }
 
@@ -48,12 +65,16 @@ mod tests {
 
     #[test]
     fn example() {
-        let mut data: Box<dyn Data> = Box::new(ProxyData::new());
+        let real = RealStorage;
 
-        println!("Program started...");
-        // пока RealData не создан
+        // Regular user without privileges
+        let user_store = StorageProxy::new(real, Role::User);
+        println!("{:?}", user_store.get("config:theme")); // slow, then cached
+        println!("{:?}", user_store.get("config:theme")); // cache hit
+        println!("{:?}", user_store.get("secret:token")); // denied
 
-        println!("First call: {}", data.load()); // создаётся RealData
-        println!("Second call: {}", data.load()); // используется готовый
+        // Admin with full rights
+        let admin_store = StorageProxy::new(real, Role::Admin);
+        println!("{:?}", admin_store.get("secret:token")); // allowed
     }
 }

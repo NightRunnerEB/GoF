@@ -1,4 +1,4 @@
-// --- Подсистема (сложные детали, могли бы быть в разных модулях) ---
+// --- Subsystems (complex details that could sit in different modules) ---
 struct Inventory;
 impl Inventory {
     fn reserve(&self, sku: &str, qty: u32) -> bool {
@@ -30,7 +30,7 @@ impl Notifier {
     }
 }
 
-// --- Фасад: один простой вход для клиента ---
+// --- Facade: one simple entry point for the client ---
 pub struct OrderFacade {
     inv: Inventory,
     pay: Payment,
@@ -57,7 +57,7 @@ impl OrderFacade {
         qty: u32,
         price_cents: u64,
     ) -> Result<String, String> {
-        // фиксируем «правильную» последовательность шагов
+        // enforce the canonical sequence of steps
         if !self.inv.reserve(sku, qty) {
             return Err("Out of stock".into());
         }
@@ -83,14 +83,16 @@ mod tests {
     #[test]
     fn example() {
         let facade = OrderFacade::new();
-        let label = facade.place_order(
-            "cust_42",
-            "user@example.com",
-            "Baker St. 221B",
-            "SKU-CPU-7950X",
-            1,
-            499_00,
-        )?;
+        let label = facade
+            .place_order(
+                "cust_42",
+                "user@example.com",
+                "Baker St. 221B",
+                "SKU-CPU-7950X",
+                1,
+                499_00,
+            )
+            .expect("msg");
         println!("Done. Shipping label: {label}");
     }
 }

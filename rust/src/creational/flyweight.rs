@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 use std::sync::Arc;
 
-// ---- Flyweight: общее состояние ----
+// ---- Flyweight: shared intrinsic state ----
 struct TreeType {
     name: String,    // intrinsic
     texture: String, // intrinsic
@@ -22,7 +22,7 @@ impl TreeType {
     }
 }
 
-// ---- Фабрика-пул flyweight'ов ----
+// ---- Flyweight factory / cache ----
 struct TreeFactory {
     pool: HashMap<String, Arc<TreeType>>,
 }
@@ -38,14 +38,14 @@ impl TreeFactory {
         self.pool
             .entry(key)
             .or_insert_with(|| Arc::new(TreeType::new(name, texture)))
-            .clone() // отдаём ещё одну "умную ссылку" на общий объект
+            .clone() // hand out another shared pointer to the pooled object
     }
     fn pool_size(&self) -> usize {
         self.pool.len()
     }
 }
 
-// ---- Внешнее состояние узла (каждое дерево) ----
+// ---- Extrinsic per-tree state ----
 struct Tree {
     x: i32,              // extrinsic
     y: i32,              // extrinsic
@@ -69,12 +69,11 @@ mod tests {
     fn example() {
         let mut factory = TreeFactory::new();
 
-        // Берём/shared типы (intrinsic). Arc делает шаринг безопасным и дешёвым.
+        // Acquire shared intrinsic types. Arc keeps sharing safe and cheap.
         let oak = factory.get_tree_type("Oak", "oak.png");
         let pine = factory.get_tree_type("Pine", "pine.png");
 
-        // Создаём много "логических" деревьев с разными координатами,
-        // но ссылающихся на несколько общих TreeType.
+        // Create many logical trees with different coordinates that share only a few TreeTypes.
         let forest = vec![
             Tree::new(1, 2, oak.clone()),
             Tree::new(3, 4, oak.clone()),

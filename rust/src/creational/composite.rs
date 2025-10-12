@@ -1,10 +1,10 @@
 trait Node {
     fn name(&self) -> &str;
-    fn size(&self) -> u64; // единый интерфейс
-    fn print(&self, indent: usize); // для наглядности
+    fn size(&self) -> u64; // unified interface
+    fn print(&self, indent: usize); // helper for visualization
 }
 
-// ---------- Лист ----------
+// ---------- Leaf ----------
 struct File {
     name: String,
     bytes: u64,
@@ -37,7 +37,7 @@ impl Node for File {
     }
 }
 
-// ---------- Композит ----------
+// ---------- Composite ----------
 struct Folder {
     name: String,
     children: Vec<Box<dyn Node>>,
@@ -70,7 +70,7 @@ impl Node for Folder {
         &self.name
     }
 
-    // Ключ: композит делегирует операцию всем детям
+    // Key idea: the composite delegates the operation to all children
     fn size(&self) -> u64 {
         self.children.iter().map(|c| c.size()).sum()
     }
@@ -95,7 +95,7 @@ mod tests {
 
     #[test]
     fn example() {
-        // Строим дерево:
+        // Build the hierarchy:
         let mut root = Folder::new("root");
         root.add(Box::new(File::new("readme.md", 1200)));
         root.add(Box::new(File::new("logo.png", 48_000)));
@@ -106,12 +106,12 @@ mod tests {
 
         root.add(Box::new(src));
 
-        // Клиент работает с Node, не различая лист/композит:
+        // Client talks to Node without caring whether it's a leaf or composite:
         println!("Total size: {} B", root.size());
         root.print(0);
 
-        // Пример удаления:
-        // (работает только у Folder — и это нормально; «унификация» касается общих операций)
+        // Removal example:
+        // (only Folder supports it — which is fine; unification applies to shared operations)
         let removed = root.remove_by_name("logo.png");
         println!("Removed logo.png? {}", removed);
         println!("Total after remove: {} B", root.size());

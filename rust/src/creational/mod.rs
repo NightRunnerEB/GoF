@@ -1,8 +1,7 @@
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn example() {
-    }
-}
+pub mod adapter;
+pub mod bridge;
+pub mod composite;
+pub mod decorator;
+pub mod facade;
+pub mod flyweight;
+pub mod proxy;
