@@ -3,7 +3,7 @@ trait Report {
     fn format(&self);
     fn export(&self);
 
-    // Шаблонный метод
+    // Template method
     fn generate(&self) {
         println!("Start report generation...");
         self.collect_data();

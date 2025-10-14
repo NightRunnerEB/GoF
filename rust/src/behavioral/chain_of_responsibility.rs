@@ -22,7 +22,7 @@ impl Handler for BaseHandler {
     }
 
     fn handle(&self, req: &str) {
-        println!("{} получил: {}", self.name, req);
+        println!("{} received: {}", self.name, req);
 
         if let Some(ref next) = self.next {
             next.handle(req);

@@ -37,7 +37,7 @@ impl Checkbox {
     }
 }
 
-// Конкретный медиатор: связывает кнопку и чекбокс
+// Concrete mediator: connects the button and checkbox
 struct Dialog {
     button: Button,
     checkbox: Checkbox,
