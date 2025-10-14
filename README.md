@@ -16,7 +16,7 @@ Both ecosystems follow the same taxonomy (`creational`, `structural`, `behaviora
 
 ## Navigation
 
-- `docs/` contains supplementary learning materials.
+- `docs/` contains explanation materials.
 - `java/` and `rust/` contain language-specific workspaces with matching pattern lists.
 
 ## License

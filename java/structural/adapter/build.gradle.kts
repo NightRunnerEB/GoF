@@ -1,1 +1,0 @@
-description = "GoF Adapter pattern"
