@@ -6,9 +6,9 @@ This repository hosts scaffolding for learning the classic Gang of Four design p
 
 ```
 .
+├── docs/           # Learning notes and diagrams
 ├── java/           # Gradle multi-project workspace
 ├── rust/           # Cargo workspace
-├── docs/           # Learning notes and diagrams
 └── README.md
 ```
 
