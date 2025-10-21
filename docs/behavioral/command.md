@@ -2,7 +2,7 @@
 
 ## Проблема без паттерна
 
-We habe two objects:
+We have two objects:
 
 - **sender** (the one who initiantes actions) — e.g. a remote controller, a UI button, an event handlers,
 - **receiver** (the one who performs the actions) — a lamp, a document, a robot and others
